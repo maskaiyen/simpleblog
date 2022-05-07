@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+Login
+{% endblock%}
+
+{% block content %}
+
+<div class="container px-5 my-5">
+    <div class="row gx-5">
+            <div class="col-lg-1">
+            </div>
+            <div class="col-lg-10">
+                <h2>Login</h2>
+                <br/><br/>
+                <div class="form-group">
+                    <form method="post">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <button class="btn btn-secondary">Login</button>
+                    </form>
+                </div>
+
+                <form id="login-form" method="post" action="">
+                {% csrf_token %}
+                <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+
+                <div class="form-floating">
+                  <input type="email" class="form-control" id="floatingInput" placeholder="Username">
+                  <label for="floatingInput">User Name</label>
+                </div>
+                <div class="form-floating">
+                  <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                  <label for="floatingPassword">Password</label>
+                </div>
+
+                <div class="checkbox mb-3">
+                  <label>
+                    <input type="checkbox" value="remember-me"> Remember me
+                  </label>
+                </div>
+                <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+              </form>
+            </div>
+    </div>
+</div>
+
+
+{% endblock %}

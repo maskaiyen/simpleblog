@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+Edit Post
+{% endblock%}
+
+{% block content %}
+<div class="container px-5 my-5">
+    <div class="row gx-5">
+            <div class="col-lg-1">
+            </div>
+            <div class="col-lg-10">
+                {% if user.is_authenticated %}
+                    <h2>Edit Post...</h2>
+                    <br/><br/>
+                    <div class="form-group">
+                        <form method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            {{ form.media }}
+                            {{ form.as_p }}
+                            <button class="btn btn-secondary">Edit</button>
+                        </form>
+                    </div>
+                    <script>
+                        var name = "{{ user.id }}";
+                        document.getElementById("elder").value = name;
+                    </script>
+                {% else %}
+                Please login or register...
+                {% endif %}
+            </div>
+    </div>
+</div>
+
+
+{% endblock %}
