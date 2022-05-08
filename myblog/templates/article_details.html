@@ -45,7 +45,8 @@
                     {% endif %}
                     <!-- Post content-->
                     <section class="mb-5">
-                        <p class="fs-5 mb-4">{{ post.content|safe }}</p>
+                        <p class="fs-5 mb-4">original{{ post.content|safe }}</p>
+                        <p class="fs-5 mb-4">new_{{ post.content.img|safe }} </p>
                     </section>
                 </article>
                 <section>
