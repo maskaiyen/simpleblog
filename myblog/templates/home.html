@@ -10,15 +10,13 @@
                 <div class="row gx-0">
                     <div class="col-lg-6 col-xl-5 py-lg-5">
                         <div class="p-4 p-md-5">
-                            {% for post in object_list|slice:":1" %}
                             <div class="badge bg-primary bg-gradient rounded-pill mb-2">News</div>
-                            <div class="h2 fw-bolder">{{ post.title }}</div>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique delectus ab doloremque, qui doloribus ea officiis...</p>
-                            <a class="stretched-link text-decoration-none" href="{% url 'article_detail' post.pk %}">
+                            <div class="h2 fw-bolder">{{ latest_post.title }}</div>
+                            <p>{{ latest_post.content|truncatechars:22|safe }}</p>
+                            <a class="stretched-link text-decoration-none" href="{% url 'article_detail' latest_post.pk %}">
                                 Read more
                                 <i class="bi bi-arrow-right"></i>
                             </a>
-                            {% endfor %}
                         </div>
                     </div>
                     <div class="col-lg-6 col-xl-7"><div class="bg-featured-blog" style="background-image: url('{% static 'myblog/images/cover.png' %}')"></div></div>
@@ -27,13 +25,13 @@
         </div>
     </div>
 </section>
-<!--
+
 <section class="py-5 bg-light">
     <div class="container px-5">
         <div class="row gx-5">
             <div class="col-xl-8">
                 <h2 class="fw-bolder fs-5 mb-4">News</h2>
-                {% for post in object_list|slice:":3" %}
+                {% for post in post_without_image  %}
                 <div class="mb-4">
                     <div class="small text-muted">{{ post.created_at | date:"M-d, Y" }}</div>
                     <a class="link-dark" href="{% url 'article_detail' post.pk %}"><h3>{{ post.title }}</h3></a>
@@ -70,20 +68,20 @@
         </div>
     </div>
 </section>
--->
+
 <section class="py-5">
     <div class="container px-5">
         <h2 class="fw-bolder fs-5 mb-4">Featured Stories</h2>
         <div class="row gx-5">
-            {% for post in object_list|slice:":6" %}
+            {% for post in post_with_image %}
             <div class="col-lg-4 mb-5">
                 <div class="card h-100 shadow border-0">
-                    {% if post.header_image %}
                     <img class="card-img-top" src="{{ post.header_image.url }}"/>
-                    {% endif %}
                     <div class="card-body p-4">
                         <div class="badge bg-primary bg-gradient rounded-pill mb-2">News</div>
                         <a class="text-decoration-none link-dark stretched-link" href="{% url 'article_detail' post.pk %}"><div class="h5 card-title mb-3">{{ post.title }}</div></a>
+                        <a>{{ post.content|truncatechars:22|safe }}</a>
+
                     </div>
                     <div class="card-footer p-4 pt-0 bg-transparent border-top-0">
                         <div class="d-flex align-items-end justify-content-between">
