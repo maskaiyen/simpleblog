@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+Edit Profile
+{% endblock%}
+
+{% block content %}
+
+<div class="container px-5 my-5">
+    <div class="row justify-content-center align-items-center">
+        <div class="col-lg-4 ">
+        {% if user.is_authenticated %}
+            <h2>Edit Profile</h2>
+            <br/><br/>
+        <!--
+            {{ user.profile.bio }}
+            <br/><br/>
+        -->
+            <div class="form-group">
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form.media }}
+                    {{ form.as_p }}
+                    <button class="btn btn-secondary">Update Profile</button>
+                </form>
+            </div>
+        {% else %}
+        Please login to edit profile
+        {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock%}

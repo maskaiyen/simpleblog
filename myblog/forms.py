@@ -1,5 +1,5 @@
 from django import forms
-from .models import Post, Category
+from .models import Post, Category, Profile
 from ckeditor.widgets import CKEditorWidget
 #
 # # choices = [('coding', 'coding'), ('sports', 'sports'), ('entertainment', 'entertainment')]
@@ -35,4 +35,17 @@ class UpdatePostForm(forms.ModelForm):
             'category': forms.Select(choices=choice_list, attrs={'class': 'form-control'}),
             'content': forms.Textarea(attrs={'class': 'form-control'}),
             # 'header_image': forms.ClearableFileInput(attrs={'class': 'form-control'}),
+        }
+
+class EditProfileImageForm(forms.ModelForm):
+    # profile_image = forms.ImageField(widget=forms.ClearableFileInput(attrs={'class': 'form-control'}))
+    class Meta:
+        model = Profile
+        fields = ('profile_image',)
+
+        widgets = {
+            'profile_image': forms.ClearableFileInput(attrs={'class': 'form-control'}),
+
+        # widgets = {
+        #     'profile_image': forms.ClearableFileInput(attrs={'class': 'form-control'}),
         }

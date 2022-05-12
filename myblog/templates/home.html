@@ -87,7 +87,7 @@
                         <div class="d-flex align-items-end justify-content-between">
                             <div class="d-flex align-items-center">
                                 {% if post.author.profile.profile_image%}
-                                <img class="rounded-circle me-3" src="{{ post.author.profile.profile_image.url }}" alt="..." />
+                                <img class="rounded-circle me-3" src="{{ post.author.profile.profile_image.url }}" alt="..." width=40px height=40px/>
                                 {% endif %}
                                 <div class="small">
                                     <div class="fw-bold">{{ post.author.first_name }} {{ post.author.last_name }}</div>
