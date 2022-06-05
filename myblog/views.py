@@ -21,7 +21,8 @@ class HomeView(ListView):
         post_with_image = Post.objects.exclude(header_image='')
         context = super(HomeView, self).get_context_data(*args, **kwargs)
         context['cat_menu'] = cat_menu
-        context['latest_post'] = all_post.order_by('-created_at')[0]
+        if len(all_post) > 1:
+            context['latest_post'] = all_post.order_by('-created_at')[0]
         context['post_with_image'] = post_with_image.order_by('-created_at')[:3]  # add object with image and limit the num # not support nagtive interge
         context['post_without_image'] = post_without_image.order_by('-created_at')[:3] # add object without image and limit the num
         return context
